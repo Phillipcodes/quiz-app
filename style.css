@@ -40,8 +40,8 @@ body {
     color: black !important;
     font-weight: 400;
 }
-.card {
-    width: 600px;
+.main-container {
+    width: 650px;
 }
 
 .ms-4 {
@@ -51,4 +51,16 @@ body {
 .logo img {
     height: 80px;
     width: 80px;
+}
+.card-body {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 300px;
+    justify-content: flex-start;
+  
+}
+
+.color-grey {
+    color: gray !important;
 }
