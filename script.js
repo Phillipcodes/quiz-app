@@ -58,10 +58,10 @@ if(currentQuestion < questions.length -1) {
     currentQuestion++;
     showQuestion();
 }else {
-    currentQuestion = 0;
+    currentQuestion = 4;
     renderEndScreen();
 }
-
+incProgress()
 };
 
 function renderEndScreen() {
@@ -76,9 +76,10 @@ goal.innerHTML += `<div class="card-body p-4 text-center flex-column justify-con
 };
 
 function restartQuiz() {
+    currentQuestion = 0;
     renderQuiz();
     showQuestion();
-    currentQuestion = 0;
+   
 }
 
 function renderQuiz() {
@@ -124,3 +125,21 @@ function startQuiz() {
     renderQuiz();
     showQuestion();
 };
+
+
+function incProgress() {
+    let progress = document.getElementById('progress');
+    if ( currentQuestion == 1) {
+        progress.innerHTML = "25%"
+        progress.style.width = '25%'
+    }if ( currentQuestion == 2) {
+        progress.innerHTML = "50%"
+        progress.style.width = '50%'
+    }if ( currentQuestion == 3) {
+        progress.innerHTML = "75%"
+        progress.style.width = '75%'
+    }if ( currentQuestion == 4) {
+        progress.innerHTML = "100%"
+        progress.style.width = '100%'
+    }
+}
