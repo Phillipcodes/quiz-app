@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="fonts.css">
-    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"  crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
     <script src="script.js"></script>
     <title>Quiz</title>
     <link rel="icon" type="image/x-icon" href="./img/logo.png">
 
 </head>
-<body>
-
+<body onload="init()">
+  
   <div class="card mb-3" style="max-width: 640px;">
+    <div class="progress">
+      <div id="progress" class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
   <div class="row g-0 main-container">
     <div class="col-md-4">
         
@@ -27,33 +33,11 @@
         <a class="color-grey" href="#">Java</a>
         </div>
     </div>
-    <div class="col-md-8 d-flex align-items-center flex-column justify-content-center">
-        <h5 class="mb-4">Wer hat HTML Erfunden ?</h5>
-        <div class="card mb-4">
-            <div class="card-body p-1">
-               <div><button type="button" class="btn btn-primary ">A</button></div>  Heinrich der vierte
-            </div>
-          </div>
-          <div class="card mb-4">
-            <div class="card-body p-1">
-               <div><button type="button" class="btn btn-primary ">A</button></div>  Heinrich der vierte
-            </div>
-          </div>
-          <div class="card mb-4">
-            <div class="card-body p-1">
-               <div><button type="button" class="btn btn-primary ">A</button></div>  Heinrich der vierte
-            </div>
-          </div>
-          <div class="card mb-4">
-            <div class="card-body p-1">
-               <div><button type="button" class="btn btn-primary ">A</button></div>  Heinrich der vierte
-            </div>
-          </div>
-      <!-- <div class="card-body p-4 text-center flex-column justify-content-center d-flex ">
-        <p class="card-text">Welcome to The Awesome HTML Quiz</p>
-        <p class="card-text"><small class="text-body-secondary">Ready for the Challange?</small></p>
-      </div>
-      <div class="ms-4"><button type="button " class="btn btn-primary btn-lg mb-2 ">Large button</button></div> -->
+    <div id="questionCards" class="col-md-8 d-flex align-items-center flex-column justify-content-center">
+      
+
+       
+    
     </div>
   </div>
 </div>

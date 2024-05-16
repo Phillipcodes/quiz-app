@@ -64,15 +64,3 @@ body {
 .color-grey {
     color: gray !important;
 }
-
-.ms-14 {
-    margin-left: 14.5rem;
-}
-
-.result-text {
-    color: #DF8944;
-}
-
-.card-body img {
-    width: 88px;
-}
