@@ -1,11 +1,12 @@
  let questions = [
     {
       "question": "Was ist die Abkürzung für HTML?",
-      "answer_1": "HXTL",
-      "answer_2": "HTML",
-      "answer_3": "HTLM",
-      "answer_4": "HTMP",
-      "right_answer": 2
+      "answer_1": "Hypertext Markup Language",
+      "answer_2": "Hyperlinks and Text Markup Language",
+      "answer_3": "Home Tool Markup Language",
+      "answer_4": "Hyperlinking Text Marking Language",
+      "right_answer": 1,
+      "button_name": "Nächste Frage"
     },
     {
       "question": "Wer hat HTML erfunden?",
@@ -13,7 +14,8 @@
       "answer_2": "Steve Jobs",
       "answer_3": "Bill Gates",
       "answer_4": "Mark Zuckerberg",
-      "right_answer": 1
+      "right_answer": 1,
+      "button_name": "Nächste Frage"
     },
     {
       "question": "Wann wurde HTML veröffentlicht?",
@@ -21,7 +23,8 @@
       "answer_2": "1993",
       "answer_3": "1995",
       "answer_4": "2001",
-      "right_answer": 3
+      "right_answer": 3,
+      "button_name": "Nächste Frage"
     },
     {
       "question": "Was bedeutet 'href' in einem <a>-Tag?",
@@ -29,24 +32,26 @@
       "answer_2": "Hypertext Reference",
       "answer_3": "HTML Reference",
       "answer_4": "Hyperlink Resource",
-      "right_answer": 2
+      "right_answer": 2,
+      "button_name": "Ergebniss"
     }
   ];
 
 
 
-let currentQuestion = 0;  // später if else abfrage wenn eine antwort weiter ist soll die zahl sich um eins erhöhen und auch die progressbar weiter voranschreiten
+let currentQuestion = 0;  //zeigt den index an an welcher stelle das array grad ist
 
 
 
 
 function showQuestion() {
-   let question = questions[currentQuestion]
+   let question = questions[currentQuestion] // sagt question jetzt das es das array questions ist and der stelle currenQuestion 
   document.getElementById('question-headline').innerHTML = question[`question`]
   document.getElementById('answer_1').innerHTML = question[`answer_1`]
   document.getElementById('answer_2').innerHTML = question[`answer_2`]
   document.getElementById('answer_3').innerHTML = question[`answer_3`]
   document.getElementById('answer_4').innerHTML = question[`answer_4`]
+  document.getElementById('button_name').innerHTML =question[`button_name`]
 }
 
 function init() {
@@ -55,6 +60,8 @@ function init() {
 
 function nextQuestion() {
 if(currentQuestion < questions.length -1) {
+    document.getElementById('questionCards').innerHTML= "";
+    renderQuiz();
     currentQuestion++;
     showQuestion();
 }else {
@@ -76,7 +83,10 @@ goal.innerHTML += `<div class="card-body p-4 text-center flex-column justify-con
 };
 
 function restartQuiz() {
+  let progress = document.getElementById('progress');
     currentQuestion = 0;
+    progress.innerHTML = ""
+    progress.style.width ='1%'
     renderQuiz();
     showQuestion();
    
@@ -85,28 +95,28 @@ function restartQuiz() {
 function renderQuiz() {
     let renderQuiz = document.getElementById('questionCards');
     renderQuiz.innerHTML = "";
-    renderQuiz.innerHTML += `<h5 id="question-headline" class="mb-4"></h5>
-    <div class="card mb-4">
+    renderQuiz.innerHTML += /*html*/`<h5 id="question-headline" class="mb-4"></h5>
+    <div id="answer-result-1" class="card mb-4 quiz-hover">
         <div class="card-body p-1">
-           <div><button type="button" class="btn btn-primary ">A</button></div>  <span id="answer_1"></span>
+           <div onclick="answer('answer_1')"><button type="button" class="btn btn-primary ">A</button></div>  <span id="answer_1"></span>
         </div>
       </div>
-      <div class="card mb-4">
+      <div id="answer-result-2" class="card mb-4 quiz-hover">
         <div class="card-body p-1">
-           <div><button type="button" class="btn btn-primary ">B</button></div>  <span id="answer_2"></span>
+           <div onclick="answer('answer_2')"><button type="button" class="btn btn-primary ">B</button></div>  <span id="answer_2"></span>
         </div>
       </div>
-      <div class="card mb-4">
+      <div id="answer-result-3" class="card mb-4 quiz-hover">
         <div class="card-body p-1">
-           <div><button type="button" class="btn btn-primary ">C</button></div> <span id="answer_3"></span>
+           <div onclick="answer('answer_3')"><button type="button" class="btn btn-primary ">C</button></div> <span id="answer_3"></span>
         </div>
       </div>
-      <div class="card mb-4">
+      <div id="answer-result-4" class="card mb-4 quiz-hover">
         <div class="card-body p-1">
-           <div><button type="button" class="btn btn-primary ">D</button></div>  <span id="answer_4"></span>
+           <div onclick="answer('answer_4')"><button type="button" class="btn btn-primary ">D</button></div>  <span id="answer_4"></span>
         </div>
       </div>
-      <div class="ms-14"><button onclick="nextQuestion()" type="button " class="btn btn-primary btn-lg mb-2 ">Large button</button></div>`
+      <div class="ms-14"><button id="button_name" onclick="nextQuestion()" type="button " class="btn btn-primary btn-lg mb-2 "></button></div>`
 };
 
 
@@ -117,7 +127,7 @@ function renderStartScreen() {
     <p class="card-text">Welcome to The Awesome HTML Quiz</p>
     <p class="card-text"><small class="text-body-secondary">Ready for the Challange?</small></p>
   </div>
-  <div onclick="startQuiz()" class="ms-4"><button type="button " class="btn btn-primary btn-lg mb-2 ">Large button</button></div>`
+  <div onclick="startQuiz()" class="ms-4"><button type="button " class="btn btn-primary btn-lg mb-2 ">Start Quiz</button></div>`
 };
 
 
@@ -143,3 +153,20 @@ function incProgress() {
         progress.style.width = '100%'
     }
 }
+
+
+function answer(selectedAnswer){
+  let question = questions[currentQuestion];
+  let selectedQuestionNumber = selectedAnswer.slice(-1); // letzte ziffer von answer_x (x= 1,2,3) sprich hier kommt  1,2,3 oder 4 raus
+  let targetElement = document.getElementById(selectedAnswer);
+  let parentDiv = targetElement.parentNode;
+  if(selectedQuestionNumber == question['right_answer']){ // ziffer wird gleich gersettu mit rigght answer und wenn gleich ist wird richtig ausgegeben
+    parentDiv.classList.add('bg-success');
+    
+  }else {
+    parentDiv.classList.add('bg-danger');
+  }
+  
+}
+
+

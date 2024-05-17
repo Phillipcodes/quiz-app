@@ -77,4 +77,24 @@ body {
     width: 88px;
 }
 
+.quiz-hover:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+}
+
+.correct-answer {
+    background-color: rgba(0, 128, 0, 0.822);
+    transform: scale(1.05);
+    transition: 0.6s
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.bg-success, .bg-danger {
+    color: white !important;
+}
+
 
