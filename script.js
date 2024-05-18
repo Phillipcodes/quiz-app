@@ -33,7 +33,7 @@
       "answer_3": "HTML Reference",
       "answer_4": "Hyperlink Resource",
       "right_answer": 2,
-      "button_name": "Ergebniss"
+      "button_name": "Ergebnis"
     }
   ];
 
@@ -98,7 +98,7 @@ function renderQuiz() {
     renderQuiz.innerHTML += /*html*/`<h5 id="question-headline" class="mb-4"></h5>
     <div id="answer-result-1" class="card mb-4 quiz-hover">
         <div class="card-body p-1">
-           <div onclick="answer('answer_1')"><button type="button" class="btn btn-primary ">A</button></div>  <span id="answer_1"></span>
+           <div onclick="answer('answer_1')"><button type="button" class="btn btn-primary  ">A</button></div>  <span id="answer_1"></span>
         </div>
       </div>
       <div id="answer-result-2" class="card mb-4 quiz-hover">
@@ -116,7 +116,7 @@ function renderQuiz() {
            <div onclick="answer('answer_4')"><button type="button" class="btn btn-primary ">D</button></div>  <span id="answer_4"></span>
         </div>
       </div>
-      <div class="ms-14"><button id="button_name" onclick="nextQuestion()" type="button " class="btn btn-primary btn-lg mb-2 "></button></div>`
+      <div class="ms-14"><button id="button_name" onclick="nextQuestion()" type="button " class="btn btn-primary btn-lg mb-2 disabled "></button></div>`
 };
 
 
@@ -160,13 +160,15 @@ function answer(selectedAnswer){
   let selectedQuestionNumber = selectedAnswer.slice(-1); // letzte ziffer von answer_x (x= 1,2,3) sprich hier kommt  1,2,3 oder 4 raus
   let targetElement = document.getElementById(selectedAnswer);
   let parentDiv = targetElement.parentNode;
+  let idOfRightAnswer = `answer_${question['right_answer']}`;
   if(selectedQuestionNumber == question['right_answer']){ // ziffer wird gleich gersettu mit rigght answer und wenn gleich ist wird richtig ausgegeben
     parentDiv.classList.add('bg-success');
     
   }else {
     parentDiv.classList.add('bg-danger');
+    document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success')
   }
-  
+  document.getElementById('button_name').classList.remove('disabled');
 }
 
 
