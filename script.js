@@ -229,7 +229,7 @@ function answer(selectedAnswer){
   let parentDiv = targetElement.parentNode; //  targetElement hat jettzt die eigenschaft etwas dem eltern div hinzuzufügen
   let idOfRightAnswer = `answer_${question['right_answer']}`; // idOfRightAnswer ist jett answer_+ die varialbe der right answer die druch selectedAnswer.splice herrausgenommen wird und hier wieder eingefügt wird
   
-  if(selectedQuestionNumber == question['right_answer']){ // ziffer wird gleich gersettu mit rigght answer und wenn gleich ist wird richtig ausgegeben
+  if(ifRightAnswerSelected(selectedQuestionNumber, question['right_answer'])){ // ifrightAnswerSelected wird hier aufgerufen mit den parametner von selectedQuestoon number und question right answer damit in die function die richte anwort als zahl übergeben wird und da definierte question as zur überprüfung da ist in welchem array wir uns befinden übergeben wird damit es keine probleme gibt diie richtigen antworten anzeigen zulassen im JS quiz
     parentDiv.classList.add('bg-success');
     score++
     audioSuccess.play();
@@ -240,6 +240,10 @@ function answer(selectedAnswer){
   }
   document.getElementById('button_name').classList.remove('disabled');
   disableButtons()
+}
+
+function ifRightAnswerSelected(selectedQuestionNumber ,right_answer) {   // right answer musste als Parameter übergeben werden weil sonst nicht verglichen wird in welchem array wir uns grade befinden.
+  return selectedQuestionNumber == right_answer;
 }
 
 function disableButtons() {

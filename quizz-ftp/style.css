@@ -64,3 +64,31 @@ body {
 .color-grey {
     color: gray !important;
 }
+
+.ms-14 {
+    margin-left: 14.5rem;
+}
+
+.result-text {
+    color: #DF8944;
+}
+
+.card-body img {
+    width: 88px;
+}
+
+.quiz-hover:hover {
+    cursor: pointer;
+    filter: brightness(85%);
+}
+
+.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+.bg-success, .bg-danger {
+    color: white !important;
+}
+
+
