@@ -80,7 +80,8 @@
 let currentQuestion = 0;  //zeigt den index an an welcher stelle das array grad ist
 let score = 0
 let questionField = 1;
-
+let audioSuccess = new Audio('./sounds/right.wav');
+let audioFail = new Audio('./sounds/wrong.wav');
 
 function showQuestion() {
    let question = questions[currentQuestion] // sagt question jetzt das es das array questions ist and der stelle currenQuestion 
@@ -192,7 +193,7 @@ function renderStartScreen() {
 
 
 function startQuiz() {
-  if(questionField === 1) {
+  if(questionField === 1) { // startet das quuiz indem es gerendert wird und dann die ffragen geladen werden aber wen questionFielld höher als 1 ist starten die JS Fragen.
     renderQuiz();
     showQuestion();
   }else {
@@ -231,10 +232,11 @@ function answer(selectedAnswer){
   if(selectedQuestionNumber == question['right_answer']){ // ziffer wird gleich gersettu mit rigght answer und wenn gleich ist wird richtig ausgegeben
     parentDiv.classList.add('bg-success');
     score++
-    
+    audioSuccess.play();
   }else {
     parentDiv.classList.add('bg-danger');
     document.getElementById(idOfRightAnswer).parentNode.classList.add('bg-success')
+    audioFail.play();
   }
   document.getElementById('button_name').classList.remove('disabled');
   disableButtons()
@@ -252,6 +254,8 @@ function loadHTMLQuestions() {
  currentQuestion = 0;
  document.getElementById('html-button').classList.remove('color-grey')
  document.getElementById('js-button').classList.add('color-grey')
+ progress.innerHTML = ""
+ progress.style.width ='1%'
  renderQuiz();
  showQuestion();
 }
@@ -262,6 +266,8 @@ questionField = 2
 currentQuestion = 0;
 effect.classList.remove('color-grey');
 document.getElementById('html-button').classList.add('color-grey')
+progress.innerHTML = ""
+progress.style.width ='1%'
 renderQuiz()
 showJsquestions();
 }
